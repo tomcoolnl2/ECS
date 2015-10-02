@@ -10,12 +10,12 @@
  * ========================================================================= */
 // Setup the system
 // --------------------------------------
-ECS.systems.decay = function systemDecay ( entities ) {
+ECS.system.decay = function systemDecay ( entities ) {
     // Here, we've implemented systems as functions which take in an array of
-    // entities. An optimization would be to have some layer which only 
+    // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll
     // assume all entities are passed in and iterate over them.
-    var curEntity; 
+    var curEntity;
 
     // iterate over all entities
     for( var entityId in entities ){
@@ -56,13 +56,13 @@ ECS.systems.decay = function systemDecay ( entities ) {
             // --------------------------
             if(curEntity.components.health.value >= 0){
 
-                // Set style based on other components too - player controlled 
+                // Set style based on other components too - player controlled
                 // entity should be style differently based on their health
                 // Update appearance based on health
                 // NOTE: Even though we set appearance properties here, they
                 // don't get rendered here - they get rendered in the render
                 // system
-                if(curEntity.components.playerControlled){ 
+                if(curEntity.components.playerControlled){
                     if(curEntity.components.health.value > 10){
                         curEntity.components.appearance.colors.r = 50;
                         curEntity.components.appearance.colors.g = 255;
@@ -71,7 +71,7 @@ ECS.systems.decay = function systemDecay ( entities ) {
                         curEntity.components.appearance.colors.r = 255;
                         curEntity.components.appearance.colors.g = 50;
                         curEntity.components.appearance.colors.b = 50;
-                    } 
+                    }
                 }
 
                 // Entity is still ALIVE

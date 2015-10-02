@@ -33,7 +33,7 @@ function doesIntersect(obj1, obj2) {
 
 // Collision system
 // --------------------------------------
-ECS.systems.collision = function systemCollision ( entities ) {
+ECS.system.collision = function systemCollision ( entities ) {
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll

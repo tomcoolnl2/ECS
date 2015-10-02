@@ -3,16 +3,16 @@ PROJECT SETUP
 
 + Add Grunt
 + Add grunt-include to auto genrate js files inside index.html
-- Add to Git
-- Exclude node_modules from Git !!
-- Exclude generated index.html file from Git !!
++ Add to Git
++ Exclude node_modules from Git !!
++ Exclude generated index.html file from Git !!
 - Introduce Jade (?)
 
 
 GAME
 
-- Devide objects
-- Introduce namespacing
++ Devide objects
++ Introduce namespacing
 - Auto load (init, load)
 - Refactor naming conventions
 - Remove JS from index.html

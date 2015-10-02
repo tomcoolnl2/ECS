@@ -56,30 +56,35 @@ ECS.Game = function Game() {
     // ----------------------------------
     // Setup the array of systems. The order of the systems is likely critical,
     // so ensure the systems are iterated in the right order
-    var systems = [
-        ECS.systems.userInput,
-        ECS.systems.collision,
-        ECS.systems.decay,
-        ECS.systems.render
-    ];
+    // var systems = [
+    //     ECS.system.userInput,
+    //     ECS.system.collision,
+    //     ECS.system.decay,
+    //     ECS.system.render
+    // ];
+    //
+
 
     // Game loop
     // ----------------------------------
-    function gameLoop (){
+    function gameLoop() {
+
+
+
         // Simple game loop
-        for(var i=0,len=systems.length; i < len; i++){
+        for( var system in ECS.system ){
             // Call the system and pass in entities
             // NOTE: One optimal solution would be to only pass in entities
             // that have the relevant components for the system, instead of
             // forcing the system to iterate over all entities
-            systems[i](ECS.entities);
-        }
+            ECS.system[system](ECS.entities);
+        };
 
         // Run through the systems.
         // continue the loop
-        if(self._running !== false){
+        if( self._running !== false ){
             requestAnimationFrame(gameLoop);
-        }
+        };
     }
     // Kick off the game loop
     requestAnimationFrame(gameLoop);
