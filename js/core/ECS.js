@@ -1,6 +1,6 @@
 // For tutorial purposes, we'll set up a global object containing
 // references to all objects.
-ECS = (function(window){
+ECS = (function( window, document ){
 
   var elements = {
     canvas : document.getElementById("game-canvas"),
@@ -20,6 +20,13 @@ ECS = (function(window){
 
     game: {},
 
-    score: 0
+    score: 0,
+
+    load : function() {
+      // Kick off the game
+      this.game = new ECS.Game();
+    }
   }
-}(this));
+}( this, this.document ));
+
+this.addEventListener('load', ECS.load.bind(ECS));
