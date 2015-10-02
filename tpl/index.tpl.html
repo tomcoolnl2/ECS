@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ECS</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id='score' class='center'>0</div>
+
+    <canvas id='game-canvas' width=600 height=400></canvas>
+
+    <div id='game-over' class='hidden'>
+        <h1>Game Over</h1>
+        <h2>Final Score: <span id='final-score'>0</span></h2>
+        <h3><a href='javascript:window.location=window.location;'>Retry</a></h3>
+    </div>
+
+    <div class='description center'>
+        <h2>Rectangle Eater</h2>
+        <p> Big guys hurt. Small guys help.</p>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // For tutorial purposes, we'll set up a global object containing
+        // references to all objects.
+        window.ECS = {
+          assemblage: {},
+          component: {},
+
+          systems: {},
+          entities: [],
+          game: {},
+
+          score: 0
+        };
+
+        // Canvas functionality (NOT ECS specific)
+        // --------------------------------------
+        // For the demo, just grab a reference to the canvas
+        // Some systems (e.g., rendering) need to know about the canvas. We
+        // could pass in a reference to it or store it's state globally like
+        // this:
+        ECS.$canvas = document.getElementById("game-canvas");
+        ECS.context = ECS.$canvas.getContext("2d");
+        ECS.$score = document.getElementById("score");
+
+    </script>
+
+    <!-- include: "type": "js", "files": ["js/system/*.js"] -->
+    <!-- include: "type": "js", "files": ["js/component/*.js"] -->
+    <!-- include: "type": "js", "files": ["js/assemblage/*.js"] -->
+    <!-- include: "type": "js", "files": ["js/Entity.js"] -->
+    <!-- include: "type": "js", "files": ["js/game.js"] -->
+
+</body>
+</html>

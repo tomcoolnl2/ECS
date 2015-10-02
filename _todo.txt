@@ -1,0 +1,21 @@
+
+PROJECT SETUP
+
++ Add Grunt
++ Add grunt-include to auto genrate js files inside index.html
+- Add to Git
+- Exclude node_modules from Git !!
+- Exclude generated index.html file from Git !!
+- Introduce Jade (?)
+
+
+GAME
+
+- Devide objects
+- Introduce namespacing
+- Auto load (init, load)
+- Refactor naming conventions
+- Remove JS from index.html
+- Refactor global functions into ECS object (or the appropriate place)
+- Move score variable into Game object
+- Add comments
