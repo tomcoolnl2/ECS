@@ -125,7 +125,7 @@ ECS.system.collision = function systemCollision ( entities ) {
                                 // Flash the canvas. NOTE: This is ok for a tutorial,
                                 // but ideally this would not be coupled in the
                                 // collision system
-                                ECS.elements.canvas.className='goodHit';
+                                ECS.elements.canvas.className = 'goodHit';
                                 setTimeout(function(){
                                     ECS.elements.canvas.className='';
                                 }, 100);
