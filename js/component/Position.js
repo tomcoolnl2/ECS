@@ -8,8 +8,8 @@ ECS.component.Position = function ComponentPosition ( params ){
     // NOTE: For the tutorial we're coupling the random values to the canvas'
     // width / height, but ideally this would be decoupled (the component should
     // not need to know the canvas's dimensions)
-    this.x = params.x || 20 + (Math.random() * (ECS.$canvas.width - 20) | 0);
-    this.y = params.y || 20 + (Math.random() * (ECS.$canvas.height - 20) | 0);
+    this.x = params.x || 20 + (Math.random() * (ECS.elements.canvas.width - 20) | 0);
+    this.y = params.y || 20 + (Math.random() * (ECS.elements.canvas.height - 20) | 0);
 
     return this;
 };

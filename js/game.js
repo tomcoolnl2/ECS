@@ -17,7 +17,8 @@ ECS.Game = function Game() {
     var entity;
 
     // Create a bunch of random entities
-    for(var i=0; i < 20; i++){
+    for(var i = 0; i < 20; i += 1){
+
         entity = new ECS.Entity();
         entity.addComponent( new ECS.component.Appearance() );
         entity.addComponent( new ECS.component.Position() );
@@ -68,8 +69,6 @@ ECS.Game = function Game() {
     // Game loop
     // ----------------------------------
     function gameLoop() {
-
-
 
         // Simple game loop
         for( var system in ECS.system ){

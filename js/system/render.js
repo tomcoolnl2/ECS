@@ -7,14 +7,14 @@
  * ========================================================================= */
 function clearCanvas () {
     // Store the current transformation matrix
-    ECS.context.save();
+    ECS.elements.context.save();
 
     // Use the identity matrix while clearing the canvas
-    ECS.context.setTransform(1, 0, 0, 1, 0, 0);
-    ECS.context.clearRect(0, 0, ECS.$canvas.width, ECS.$canvas.height);
+    ECS.elements.context.setTransform(1, 0, 0, 1, 0, 0);
+    ECS.elements.context.clearRect(0, 0, ECS.elements.canvas.width, ECS.elements.canvas.height);
 
     // Restore the transform
-    ECS.context.restore();
+    ECS.elements.context.restore();
 }
 
 
@@ -58,26 +58,26 @@ ECS.system.render = function systemRender ( entities ) {
                 fillStyle += ',1)';
             }
 
-            ECS.context.fillStyle = fillStyle;
+            ECS.elements.context.fillStyle = fillStyle;
 
             // Color big squares differently
             if(!curEntity.components.playerControlled &&
             curEntity.components.appearance.size > 12){
-                ECS.context.fillStyle = 'rgba(0,0,0,0.8)';
+                ECS.elements.context.fillStyle = 'rgba(0,0,0,0.8)';
             }
 
             // draw a little black line around every rect
-            ECS.context.strokeStyle = 'rgba(0,0,0,1)';
+            ECS.elements.context.strokeStyle = 'rgba(0,0,0,1)';
 
             // draw the rect
-            ECS.context.fillRect(
+            ECS.elements.context.fillRect(
                 curEntity.components.position.x - curEntity.components.appearance.size,
                 curEntity.components.position.y - curEntity.components.appearance.size,
                 curEntity.components.appearance.size * 2,
                 curEntity.components.appearance.size * 2
             );
             // stroke it
-            ECS.context.strokeRect(
+            ECS.elements.context.strokeRect(
                 curEntity.components.position.x - curEntity.components.appearance.size,
                 curEntity.components.position.y - curEntity.components.appearance.size,
                 curEntity.components.appearance.size * 2,

@@ -20,26 +20,28 @@ var userInputPosition = {
     deltaY: false
 };
 
+console.log(ECS);
+
 // start it in center for touch devices
 if(hasTouchEnabled){
     userInputPosition = {
-        x: ECS.$canvas.width / 2,
-        y: ECS.$canvas.height / 2,
-        lastX: ECS.$canvas.width / 2,
-        lastY: ECS.$canvas.height / 2
+        x: ECS.elements.canvas.width / 2,
+        y: ECS.elements.canvas.height / 2,
+        lastX: ECS.elements.canvas.width / 2,
+        lastY: ECS.elements.canvas.height / 2
     };
 }
 
 // Setup mouse handling
 // --------------------------------------
 function updateMousePosition(evt) {
-    var rect = ECS.$canvas.getBoundingClientRect();
+    var rect = ECS.elements.canvas.getBoundingClientRect();
     userInputPosition.x = evt.clientX - rect.left;
     userInputPosition.y = evt.clientY - rect.top;
     userInputPosition.touch = false;
 }
 
-ECS.$canvas.addEventListener('mousemove', function mouseMove (evt) {
+ECS.elements.canvas.addEventListener('mousemove', function mouseMove (evt) {
     //// update the mouse position when moved
     updateMousePosition(evt);
 }, false);

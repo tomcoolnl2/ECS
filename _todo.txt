@@ -6,7 +6,6 @@ PROJECT SETUP
 + Add to Git
 + Exclude node_modules from Git !!
 + Exclude generated index.html file from Git !!
-- Introduce Jade (?)
 
 
 GAME
@@ -15,7 +14,7 @@ GAME
 + Introduce namespacing
 - Auto load (init, load)
 - Refactor naming conventions
-- Remove JS from index.html
++ Remove JS from index.html
 - Refactor global functions into ECS object (or the appropriate place)
 - Move score variable into Game object
 - Add comments

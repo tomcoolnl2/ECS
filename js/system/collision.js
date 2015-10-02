@@ -39,26 +39,26 @@ ECS.system.collision = function systemCollision ( entities ) {
     // feeds in relevant entities to the system, but for demo purposes we'll
     // assume all entities are passed in and iterate over them.
 
-    var curEntity;
+    var currentEntity;
     var entityIdsCollidedWith = [];
 
     // iterate over all entities
     for( var entityId in entities ){
-        curEntity = entities[entityId];
+        currentEntity = entities[entityId];
 
         // NOTE: Even though we set the colors here, we don't render them
         //  (that's the job of the renderer system)
-        curEntity.components.appearance.colors.r = 0;
+        currentEntity.components.appearance.colors.r = 0;
 
         // Only check for collision on player controllable entities
         // (playerControlled) and entities with a collision component
-        if( curEntity.components.appearance &&
-            curEntity.components.playerControlled &&
-            curEntity.components.position ){
+        if( currentEntity.components.appearance &&
+            currentEntity.components.playerControlled &&
+            currentEntity.components.position ){
 
             // Systems can also modify components...
             // Clear out existing collision appearance property
-            curEntity.components.appearance.colors.r = 0;
+            currentEntity.components.appearance.colors.r = 0;
 
             // test for intersection of player controlled rects vs. all other
             // collision rects
@@ -72,15 +72,15 @@ ECS.system.collision = function systemCollision ( entities ) {
 
                     if( doesIntersect(
                         {
-                            position: curEntity.components.position,
-                            size: curEntity.components.appearance.size
+                            position: currentEntity.components.position,
+                            size: currentEntity.components.appearance.size
                         },
                         {
                             position: entities[entityId2].components.position,
                             size: entities[entityId2].components.appearance.size
                         }
                     )){
-                        curEntity.components.appearance.colors.r = 255;
+                        currentEntity.components.appearance.colors.r = 255;
                         entities[entityId2].components.appearance.colors.r = 150;
 
                         // Don't modify the array in place; we're still iterating
@@ -88,33 +88,34 @@ ECS.system.collision = function systemCollision ( entities ) {
                         entityIdsCollidedWith.push(entityId);
                         var negativeDamageCutoff = 12;
 
-                        if(curEntity.components.health){
+                        if(currentEntity.components.health){
                             // Increase the entity's health, it ate something
-                            curEntity.components.health.value += Math.max(
+                            currentEntity.components.health.value += Math.max(
                                 -2,
                                 negativeDamageCutoff - entities[entityId2].components.appearance.size
                             );
 
                             // extra bonus for hitting small entities
                             if(entities[entityId2].components.appearance.size < 1.3){
-                                if(curEntity.components.health.value < 30){
+                                if(currentEntity.components.health.value < 30){
                                     // Add some bonus health if it's really small,
                                     // but don't let it get out of control
-                                    curEntity.components.health.value += 9;
+                                    currentEntity.components.health.value += 9;
                                 }
-                            }
+                            };
+
                             if ( entities[entityId2].components.appearance.size > negativeDamageCutoff ){
                                 // Flash the canvas. NOTE: This is ok for a tutorial,
                                 // but ideally this would not be coupled in the
                                 // collision system
-                                ECS.$canvas.className='badHit';
+                                ECS.elements.canvas.className = 'badHit';
                                 setTimeout(function(){
-                                    ECS.$canvas.className='';
+                                    ECS.elements.canvas.className='';
                                 }, 100);
 
                                 // substract even more health from the player
                                 // but don't let it take away more than 5 dm
-                                curEntity.components.health.value -= Math.min(
+                                currentEntity.components.health.value -= Math.min(
                                     5,
                                     entities[entityId2].components.appearance.size - negativeDamageCutoff
                                 );
@@ -124,16 +125,16 @@ ECS.system.collision = function systemCollision ( entities ) {
                                 // Flash the canvas. NOTE: This is ok for a tutorial,
                                 // but ideally this would not be coupled in the
                                 // collision system
-                                ECS.$canvas.className='goodHit';
+                                ECS.elements.canvas.className='goodHit';
                                 setTimeout(function(){
-                                    ECS.$canvas.className='';
+                                    ECS.elements.canvas.className='';
                                 }, 100);
-                            }
+                            };
                         }
 
                         // update the score
                         ECS.score++;
-                        ECS.$score.innerHTML = ECS.score;
+                        ECS.elements.score.innerHTML = ECS.score;
 
                         delete ECS.entities[entityId2];
 
