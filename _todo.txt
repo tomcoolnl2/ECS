@@ -4,8 +4,8 @@ PROJECT SETUP
 + Add Grunt
 + Add grunt-include to auto genrate js files inside index.html
 + Add to Git
-+ Exclude node_modules from Git !!
-+ Exclude generated index.html file from Git !!
++ Exclude node_modules from Git
++ Exclude generated index.html file from Git
 
 
 GAME

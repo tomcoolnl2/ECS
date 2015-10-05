@@ -49,7 +49,7 @@ ECS.elements.canvas.addEventListener('mousemove', function mouseMove (evt) {
 
 // Setup the system
 // --------------------------------------
-ECS.system.userInput = function systemUserInput ( entities ) {
+ECS.system.UserInput = function systemUserInput ( entities ) {
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll

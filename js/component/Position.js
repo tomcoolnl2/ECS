@@ -13,4 +13,5 @@ ECS.component.Position = function ComponentPosition ( params ){
 
     return this;
 };
+
 ECS.component.Position.prototype.name = 'position';

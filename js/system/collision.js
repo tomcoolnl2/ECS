@@ -5,35 +5,38 @@
  *   other entities that have a collision component
  *
  * ========================================================================= */
-// Basic collision detection for rectangle intersection (NOTE: again, this would
-// live inside the system itself)
-function doesIntersect(obj1, obj2) {
-    // Takes in two objects with position and size properties
-    //  obj1: player controlled position and size
-    //  obj2: object to check
-    //
-    var rect1 = {
-        x: obj1.position.x - obj1.size,
-        y: obj1.position.y - obj1.size,
-        height: obj1.size * 2,
-        width: obj1.size * 2
-    };
-    var rect2 = {
-        x: obj2.position.x - obj2.size,
-        y: obj2.position.y - obj2.size,
-        height: obj2.size * 2,
-        width: obj2.size * 2
-    };
-
-    return (rect1.x < rect2.x + rect2.width &&
-        rect1.x + rect1.width > rect2.x &&
-        rect1.y < rect2.y + rect2.height &&
-        rect1.height + rect1.y > rect2.y);
-}
 
 // Collision system
 // --------------------------------------
-ECS.system.collision = function systemCollision ( entities ) {
+ECS.system.Collision = function systemCollision( entities ) {
+
+  // Basic collision detection for rectangle intersection (NOTE: again, this would
+  // live inside the system itself)
+  var doesIntersect = function (obj1, obj2) {
+      // Takes in two objects with position and size properties
+      //  obj1: player controlled position and size
+      //  obj2: object to check
+      //
+      var rect1 = {
+          x: obj1.position.x - obj1.size,
+          y: obj1.position.y - obj1.size,
+          height: obj1.size * 2,
+          width: obj1.size * 2
+      };
+
+      var rect2 = {
+          x: obj2.position.x - obj2.size,
+          y: obj2.position.y - obj2.size,
+          height: obj2.size * 2,
+          width: obj2.size * 2
+      };
+
+      return (rect1.x < (rect2.x + rect2.width) &&
+          (rect1.x + rect1.width) > rect2.x &&
+          rect1.y < (rect2.y + rect2.height) &&
+          (rect1.height + rect1.y) > rect2.y);
+  }
+
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll
@@ -70,16 +73,17 @@ ECS.system.collision = function systemCollision ( entities ) {
                     entities[entityId2].components.collision &&
                     entities[entityId2].components.appearance ){
 
-                    if( doesIntersect(
-                        {
-                            position: currentEntity.components.position,
-                            size: currentEntity.components.appearance.size
-                        },
-                        {
-                            position: entities[entityId2].components.position,
-                            size: entities[entityId2].components.appearance.size
-                        }
-                    )){
+                    var obj1 = {
+                        position: currentEntity.components.position,
+                        size: currentEntity.components.appearance.size
+                    };
+
+                    var obj2 = {
+                        position: entities[entityId2].components.position,
+                        size: entities[entityId2].components.appearance.size
+                    };
+
+                    if( doesIntersect( obj1, obj2 ) ) {
                         currentEntity.components.appearance.colors.r = 255;
                         entities[entityId2].components.appearance.colors.r = 150;
 
@@ -119,7 +123,6 @@ ECS.system.collision = function systemCollision ( entities ) {
                                     5,
                                     entities[entityId2].components.appearance.size - negativeDamageCutoff
                                 );
-
 
                             } else {
                                 // Flash the canvas. NOTE: This is ok for a tutorial,

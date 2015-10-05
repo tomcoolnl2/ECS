@@ -20,7 +20,7 @@ function clearCanvas () {
 
 // ECS - System - Render
 // --------------------------------------
-ECS.system.render = function systemRender ( entities ) {
+ECS.system.Render = function systemRender ( entities ) {
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll

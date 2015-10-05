@@ -10,7 +10,7 @@
  * ========================================================================= */
 // Setup the system
 // --------------------------------------
-ECS.system.decay = function systemDecay ( entities ) {
+ECS.system.Decay = function systemDecay ( entities ) {
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll
